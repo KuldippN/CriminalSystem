@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block title %}Add Criminal{% endblock %} {% block
+content %}
+
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-lg border-0">
+      <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">Add Criminal Record</h4>
+      </div>
+
+      <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Full Name</label>
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                placeholder="Enter name"
+                required
+              />
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Age</label>
+              <input
+                type="number"
+                name="age"
+                class="form-control"
+                placeholder="Enter age"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Crime Description</label>
+            <input
+              type="text"
+              name="crime"
+              class="form-control"
+              placeholder="Enter crime details"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Upload Photo</label>
+            <input type="file" name="image" class="form-control" required />
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <a href="/dashboard" class="btn btn-secondary"> ⬅ Back </a>
+
+            <button type="submit" class="btn btn-primary">Save Record</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+
+<script>
+
+  {% for category, message in messages %}
+
+  Swal.fire({
+  toast: true,
+  position: 'bottom-end',
+  icon: 'success',
+  title: '{{ message }}',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true
+  })
+
+  {% endfor %}
+</script>
+
+{% endif %} {% endwith %}
